@@ -4,15 +4,15 @@ import {FlatList, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {FilterBy, RootStackParamList} from '../routes/types';
 import Routes from '../routes/routes';
-import useFilterOptions from '../hooks/useFilterOptions';
 import FilterItem from '../components/filter-item/FilterItem';
 import Button from '../components/button/Button';
 import {useAppDispatch, useAppSelector} from '../hooks/useReduxHooks';
 import {setMakeFilter, setModelFilter} from '../store/slices/filter/reducer';
+import getFilterOptions from '../helpers/getFilterOptions';
 
 const FiltersScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, Routes.FILTER>>();
-  const options = useFilterOptions(route.params.filterBy);
+  const options = getFilterOptions(route.params.filterBy);
   const filter = useAppSelector(state => state.filterReducer);
 
   const selectedOption =

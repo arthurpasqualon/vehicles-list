@@ -1,8 +1,7 @@
 import {FilterBy} from '../routes/types';
-import {useAppSelector} from './useReduxHooks';
+import vehicles from '../data/vehicles.json';
 
-const useFilterOptions = (option: FilterBy) => {
-  const vehicles = useAppSelector(state => state.vehiclesSlice.vehicles);
+const getFilterOptions = (option: FilterBy) => {
   if (option === FilterBy.MAKE) {
     return Array.from(new Set(vehicles.map(vehicle => vehicle.make)));
   }
@@ -14,4 +13,4 @@ const useFilterOptions = (option: FilterBy) => {
   return [];
 };
 
-export default useFilterOptions;
+export default getFilterOptions;

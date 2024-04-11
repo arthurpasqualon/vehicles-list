@@ -2,11 +2,11 @@ import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {StyleSheet} from 'react-native';
 
-const FiltersPage = () => {
+const DetailScreen = () => {
   return <SafeAreaView style={styles.container} />;
 };
 
-export default FiltersPage;
+export default DetailScreen;
 
 const styles = StyleSheet.create({
   container: {

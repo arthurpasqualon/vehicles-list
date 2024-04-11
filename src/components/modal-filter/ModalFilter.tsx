@@ -3,18 +3,24 @@ import {View, Modal} from 'react-native';
 
 import styles from './styles';
 import Button from '../button/Button';
-import {useAppDispatch, useAppSelector} from '../../hooks/reduxHooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/useReduxHooks';
 import {setStartingBidFilter} from '../../store/slices/filter/reducer';
 import {Slider} from '@miblanchard/react-native-slider';
 import {MAXIMUM_VALUE, MINIMUM_VALUE} from '../../constants';
+import {FilterBy, RootStackParamList} from '../../routes/types';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useNavigation} from '@react-navigation/native';
+import Routes from '../../routes/routes';
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
 }
 
-const ModalRange: React.FC<ModalProps> = ({open, onClose}) => {
+const ModalFilter: React.FC<ModalProps> = ({open, onClose}) => {
   const dispatch = useAppDispatch();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const range = useAppSelector(state => state.filterReducer.startingBid);
   const [low, setLow] = React.useState(range.min);
   const [high, setHigh] = React.useState(range.max);
@@ -33,6 +39,20 @@ const ModalRange: React.FC<ModalProps> = ({open, onClose}) => {
     <Modal visible={open} transparent onRequestClose={onClose}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
+          <Button
+            title="Filter by Make"
+            onPress={() => {
+              onClose();
+              navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MAKE});
+            }}
+          />
+          <Button
+            title="Filter by Model"
+            onPress={() => {
+              onClose();
+              navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MODEL});
+            }}
+          />
           <Slider
             animateTransitions
             maximumTrackTintColor="#d3d3d3"
@@ -52,4 +72,4 @@ const ModalRange: React.FC<ModalProps> = ({open, onClose}) => {
   );
 };
 
-export default ModalRange;
+export default ModalFilter;

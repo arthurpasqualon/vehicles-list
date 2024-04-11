@@ -4,17 +4,16 @@ import {StyleSheet} from 'react-native';
 
 import Header from '../components/header/Header';
 import List from '../components/list/List';
-import ModalRange from '../components/modal-range/ModalRange';
-import {useAppSelector} from '../hooks/reduxHooks';
+import ModalFilter from '../components/modal-filter/ModalFilter';
+import {useAppSelector} from '../hooks/useReduxHooks';
 
 const MainScreen = () => {
   const vehicles = useAppSelector(state => state.vehiclesSlice.vehicles);
   const [filterRangeOpen, setFilterRangeOpen] = React.useState(false);
-  // TODO: Implement filter logic here
   return (
     <SafeAreaView style={styles.container}>
       <Header openFilterModal={() => setFilterRangeOpen(true)} />
-      <ModalRange
+      <ModalFilter
         onClose={() => setFilterRangeOpen(false)}
         open={filterRangeOpen}
       />

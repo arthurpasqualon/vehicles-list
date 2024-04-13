@@ -1,21 +1,27 @@
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, SafeAreaView, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {FilterBy, RootStackParamList} from '../routes/types';
 import Routes from '../routes/routes';
 import FilterItem from '../components/filter-item/FilterItem';
 import Button from '../components/button/Button';
 import {useAppDispatch, useAppSelector} from '../hooks/useReduxHooks';
-import {setMakeFilter, setModelFilter} from '../store/slices/filter/reducer';
-import getFilterOptions from '../helpers/getFilterOptions';
+import {
+  clearMakeFilter,
+  clearModelFilter,
+  setMakeFilter,
+  setModelFilter,
+} from '../store/slices/filter/reducer';
+import useGetFilterOptions from '../hooks/useGetFilterOptions';
 
 const FiltersScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, Routes.FILTER>>();
-  const options = getFilterOptions(route.params.filterBy);
+  const navigation = useNavigation();
+  const options = useGetFilterOptions(route.params.filterBy);
   const filter = useAppSelector(state => state.filterReducer);
 
-  const selectedOption =
+  const selectedOptions =
     route.params.filterBy === FilterBy.MAKE ? filter.make : filter.model;
 
   const dispatch = useAppDispatch();
@@ -29,21 +35,42 @@ const FiltersScreen = () => {
     }
   };
 
+  const clearAll = () => {
+    if (route.params.filterBy === FilterBy.MAKE) {
+      dispatch(clearMakeFilter());
+    }
+    if (route.params.filterBy === FilterBy.MODEL) {
+      dispatch(clearModelFilter());
+    }
+    navigation.goBack();
+  };
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={options}
-        renderItem={({item}) => (
-          <FilterItem
-            title={item}
-            onPress={onPress}
-            isSelected={selectedOption === item}
-          />
-        )}
+        renderItem={({item}) => {
+          const isSelected = selectedOptions.includes(item);
+          return (
+            <FilterItem
+              title={item}
+              onPress={onPress}
+              isSelected={isSelected}
+            />
+          );
+        }}
+        ListFooterComponent={
+          <View style={styles.floatingButtonContainer}>
+            <Button
+              title="Clear All Selections"
+              onPress={clearAll}
+              textColor="red"
+            />
+          </View>
+        }
         keyExtractor={item => item}
       />
-      <Button title="Apply" onPress={() => {}} />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -53,6 +80,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 24,
+    backgroundColor: '#fff',
+  },
+  floatingButtonContainer: {
+    alignItems: 'center',
     backgroundColor: '#fff',
   },
 });

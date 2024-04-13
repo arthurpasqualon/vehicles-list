@@ -5,10 +5,10 @@ import {StyleSheet} from 'react-native';
 import Header from '../components/header/Header';
 import List from '../components/list/List';
 import ModalFilter from '../components/modal-filter/ModalFilter';
-import {useAppSelector} from '../hooks/useReduxHooks';
+import useFilterVehicles from '../hooks/useVehicles';
 
 const MainScreen = () => {
-  const vehicles = useAppSelector(state => state.vehiclesSlice.vehicles);
+  const vehicles = useFilterVehicles();
   const [filterRangeOpen, setFilterRangeOpen] = React.useState(false);
   return (
     <SafeAreaView style={styles.container}>

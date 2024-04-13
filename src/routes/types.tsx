@@ -1,4 +1,5 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {Vehicle} from '../types';
 
 export enum FilterBy {
   MAKE = 'make',
@@ -10,7 +11,9 @@ export type RootStackParamList = {
   FILTER: {
     filterBy: FilterBy;
   };
-  DETAIL: any;
+  DETAIL: {
+    vehicle: Vehicle;
+  };
 };
 
 export type RootStackScreenProps =

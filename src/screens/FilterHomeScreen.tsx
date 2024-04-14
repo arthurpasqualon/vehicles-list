@@ -18,9 +18,14 @@ const FilterHomeScreen = () => {
   const dispatch = useAppDispatch();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const range = useAppSelector(state => state.filterReducer.startingBid);
-  const [low, setLow] = React.useState(range.min);
-  const [high, setHigh] = React.useState(range.max);
+  const {startingBid, make, model} = useAppSelector(
+    state => state.filterReducer,
+  );
+  const [low, setLow] = React.useState(startingBid.min);
+  const [high, setHigh] = React.useState(startingBid.max);
+
+  const hasMakeFilter = make.length > 0;
+  const hasModelFilter = model.length > 0;
 
   const setStartBidValues = () => {
     dispatch(setStartingBidFilter({min: low, max: high}));
@@ -57,25 +62,26 @@ const FilterHomeScreen = () => {
       <View style={styles.separator} />
       <Text style={styles.sectionTitle}>Filter by:</Text>
       <Button
-        title="Filter by Make"
+        title={`Filter by Make ${make.length > 0 ? `(${make.length})` : ''}`}
         iconLeft="flag"
         iconRight="filter-variant"
+        textColor={hasMakeFilter ? '#ffffff' : '#ffffff70'}
         onPress={() => {
           navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MAKE});
         }}
       />
       <Button
-        title="Filter by Model"
+        title={`Filter by Model ${model.length > 0 ? `(${model.length})` : ''}`}
         iconLeft="car"
         iconRight="filter-variant"
+        textColor={hasModelFilter ? '#ffffff' : '#ffffff70'}
         onPress={() => {
           navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MODEL});
         }}
       />
       <View style={styles.separator} />
-
-        <Button title="Clear all filters" onPress={clearAll} />
-        <Button title="Confirm" onPress={setStartBidValues} />
+      <Button title="Clear all filters" onPress={clearAll} />
+      <Button title="Done" onPress={setStartBidValues} />
     </View>
   );
 };

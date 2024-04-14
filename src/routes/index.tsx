@@ -69,6 +69,7 @@ const Navigator = () => {
         component={FilterHomeScreen}
         options={{
           headerTitle: 'Filters',
+          animation: 'slide_from_bottom',
           ...headerOptions,
         }}
       />

@@ -18,8 +18,10 @@ const DetailScreen = () => {
           <Icon name="camera-off-outline" size={96} color="#5A5A5A" />
         </View>
         <View style={styles.header}>
-          <Text style={styles.title}>{vehicle.model}</Text>
+          <Text style={styles.title}>Starting Bid: ${vehicle.startingBid}</Text>
         </View>
+        <View style={styles.separator} />
+        <Text style={styles.details}>{vehicle.model}</Text>
         <View style={styles.separator} />
         <Text style={styles.details}>Make: {vehicle.make}</Text>
         <View style={styles.separator} />
@@ -30,8 +32,6 @@ const DetailScreen = () => {
         <Text style={styles.details}>Fuel: {vehicle.fuel}</Text>
         <View style={styles.separator} />
         <Text style={styles.details}>Engine Size: {vehicle.engineSize}</Text>
-        <View style={styles.separator} />
-        <Text style={styles.details}>Starting Bid: ${vehicle.startingBid}</Text>
         <View style={styles.separator} />
         <Text style={styles.details}>
           Auction Date:{' '}

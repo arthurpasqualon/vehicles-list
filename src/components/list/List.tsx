@@ -4,7 +4,6 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import {Vehicle} from '../../types';
 import ListItem from '../list-item/ListItem';
 import vehicleKeyExtractor from '../../helpers/vehicleKeyExtractor';
-import Button from '../button/Button';
 import {useAppDispatch} from '../../hooks/useReduxHooks';
 import {clearAllFilters} from '../../store/slices/filter/reducer';
 
@@ -29,7 +28,11 @@ const List: React.FC<ListProps> = ({vehicles}) => {
           <Text style={styles.emptyListDescription}>
             Clear your filters to be able to see results
           </Text>
-          <Button title="Clear filters" onPress={clearFilters} />
+          <View style={styles.clearAllContainer}>
+            <Text style={styles.clearAllText} onPress={clearFilters}>
+              Clear filters
+            </Text>
+          </View>
         </View>
       }
       keyExtractor={item => vehicleKeyExtractor(item)}
@@ -50,6 +53,18 @@ const styles = StyleSheet.create({
   emptyListDescription: {
     fontSize: 16,
     color: '#5A5A5A',
+  },
+  clearAllContainer: {
+    height: 48,
+    alignItems: 'center',
+    marginTop: 24,
+    justifyContent: 'center',
+  },
+  clearAllText: {
+    fontSize: 16,
+    color: '#152d6d',
+    textAlign: 'center',
+    flex: 1,
   },
 });
 

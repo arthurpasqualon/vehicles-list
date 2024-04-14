@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ButtonProps {
@@ -19,8 +19,19 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
-      {iconLeft && <Icon name={iconLeft} size={24} color={textColor} />}
-      {title && <Text style={[styles.title, {color: textColor}]}>{title}</Text>}
+      {title && (
+        <View style={styles.titleContainer}>
+          {iconLeft && (
+            <Icon
+              name={iconLeft}
+              size={24}
+              color={textColor}
+              style={styles.iconLeft}
+            />
+          )}
+          <Text style={[styles.title, {color: textColor}]}>{title}</Text>
+        </View>
+      )}
       {iconRight && <Icon name={iconRight} size={24} color={textColor} />}
     </TouchableOpacity>
   );
@@ -33,9 +44,17 @@ const styles = StyleSheet.create({
     padding: 8,
     margin: 2,
   },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
   title: {
     fontSize: 16,
-    textAlign: 'center',
+    flex: 1,
+  },
+  iconLeft: {
+    marginRight: 8,
   },
 });
 

@@ -1,25 +1,18 @@
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, SafeAreaView, View} from 'react-native';
+import {FlatList, SafeAreaView} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {FilterBy, RootStackParamList} from '../routes/types';
 import Routes from '../routes/routes';
 import FilterItem from '../components/filter-item/FilterItem';
-import Button from '../components/button/Button';
 import {useAppDispatch, useAppSelector} from '../hooks/useReduxHooks';
-import {
-  clearMakeFilter,
-  clearModelFilter,
-  setMakeFilter,
-  setModelFilter,
-} from '../store/slices/filter/reducer';
+import {setMakeFilter, setModelFilter} from '../store/slices/filter/reducer';
 import useGetFilterOptions from '../hooks/useGetFilterOptions';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {colors} from '../constants';
 
 const FiltersScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, Routes.FILTER>>();
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const options = useGetFilterOptions(route.params.filterBy);
   const filter = useAppSelector(state => state.filterReducer);
 
@@ -37,16 +30,6 @@ const FiltersScreen = () => {
     }
   };
 
-  const clearAll = () => {
-    if (route.params.filterBy === FilterBy.MAKE) {
-      dispatch(clearMakeFilter());
-    }
-    if (route.params.filterBy === FilterBy.MODEL) {
-      dispatch(clearModelFilter());
-    }
-    navigation.goBack();
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -61,15 +44,6 @@ const FiltersScreen = () => {
             />
           );
         }}
-        ListFooterComponent={
-          <View style={styles.floatingButtonContainer}>
-            <Button
-              title="Clear All Selections"
-              onPress={clearAll}
-              textColor="red"
-            />
-          </View>
-        }
         keyExtractor={item => item}
       />
     </SafeAreaView>
@@ -82,10 +56,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 24,
-    backgroundColor: '#152d6d',
+    backgroundColor: colors.primary,
   },
   floatingButtonContainer: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
 });

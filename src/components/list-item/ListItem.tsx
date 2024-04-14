@@ -9,6 +9,7 @@ import {RootStackParamList} from '../../routes/types';
 import {useAppDispatch} from '../../hooks/useReduxHooks';
 import {toggleFavourite} from '../../store/slices/vehicles';
 import dayjs from 'dayjs';
+import {colors} from '../../constants';
 
 interface ListItemProps {
   vehicle: Vehicle;
@@ -48,7 +49,7 @@ const ListItem: React.FC<ListItemProps> = ({vehicle}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={navigateToDetails}>
       <View style={styles.photoContainer}>
-        <Icon name="camera-off-outline" size={48} color="#5A5A5A" />
+        <Icon name="camera-off-outline" size={48} color={colors.mediumGrey} />
       </View>
       <View style={styles.descriptionContainer}>
         <Text style={styles.startingBid}>$ {startingBid}</Text>
@@ -64,9 +65,9 @@ const ListItem: React.FC<ListItemProps> = ({vehicle}) => {
         name={favouriteIcon}
         onPress={onToggleFavourite}
         size={24}
-        color="#da291c"
+        color={colors.secondary}
       />
-      <Icon name="chevron-right" size={24} color="#5A5A5A" />
+      <Icon name="chevron-right" size={24} color={colors.mediumGrey} />
     </TouchableOpacity>
   );
 };
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: colors.lightGrey,
     marginHorizontal: 8,
     marginVertical: 4,
   },
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     width: 96,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: colors.ligthGrey2,
   },
 });
 

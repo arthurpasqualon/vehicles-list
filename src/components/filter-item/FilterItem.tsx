@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Button from '../button/Button';
+import {colors} from '../../constants';
 
 interface FilterItemProps {
   title: string;
@@ -13,12 +14,13 @@ const FilterItem: React.FC<FilterItemProps> = ({
   onPress,
   isSelected,
 }) => {
-  const textColor = isSelected ? '#7d00ff' : '#5A5A5A';
+  const textColor = isSelected ? colors.white : colors.white70;
   return (
     <View style={styles.container}>
       <Button
         title={title}
         onPress={() => onPress(title)}
+        iconRight={isSelected ? 'delete' : 'plus'}
         textColor={textColor}
       />
     </View>
@@ -29,21 +31,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: colors.white70,
     paddingVertical: 12,
     marginHorizontal: 12,
-  },
-  name: {
-    flex: 2,
-    marginHorizontal: 12,
-    marginVertical: 4,
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#5A5A5A',
-  },
-  code: {
-    flex: 1,
-    fontSize: 16,
   },
 });
 

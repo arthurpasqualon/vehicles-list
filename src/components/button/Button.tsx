@@ -1,6 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {colors} from '../../constants';
 
 interface ButtonProps {
   onPress: () => void;
@@ -15,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   title,
   iconLeft,
   iconRight,
-  textColor = '#ffffff',
+  textColor = colors.white,
 }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>

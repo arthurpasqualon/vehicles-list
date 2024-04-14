@@ -6,6 +6,7 @@ import ListItem from '../list-item/ListItem';
 import vehicleKeyExtractor from '../../helpers/vehicleKeyExtractor';
 import {useAppDispatch} from '../../hooks/useReduxHooks';
 import {clearAllFilters} from '../../store/slices/filter/reducer';
+import {colors} from '../../constants';
 
 interface ListProps {
   vehicles: Vehicle[];
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
   emptyListDescription: {
     fontSize: 16,
-    color: '#5A5A5A',
+    color: colors.mediumGrey,
   },
   clearAllContainer: {
     height: 48,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   },
   clearAllText: {
     fontSize: 16,
-    color: '#152d6d',
+    color: colors.primary,
     textAlign: 'center',
     flex: 1,
   },

@@ -6,6 +6,7 @@ import {RootStackParamList} from '../routes/types';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import dayjs from 'dayjs';
+import {colors} from '../constants';
 
 const DetailScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, Routes.DETAIL>>();
@@ -15,7 +16,7 @@ const DetailScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.photoContainer}>
-          <Icon name="camera-off-outline" size={96} color="#5A5A5A" />
+          <Icon name="camera-off-outline" size={96} color={colors.mediumGrey} />
         </View>
         <View style={styles.header}>
           <Text style={styles.title}>Starting Bid: ${vehicle.startingBid}</Text>
@@ -47,13 +48,13 @@ export default DetailScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   photoContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 16 / 9,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: colors.ligthGrey2,
     width: '100%',
   },
   title: {
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: '100%',
     marginVertical: 4,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: colors.lightGrey,
   },
   details: {
     fontSize: 16,

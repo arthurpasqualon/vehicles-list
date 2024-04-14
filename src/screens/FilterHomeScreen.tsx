@@ -11,7 +11,7 @@ import Routes from '../routes/routes';
 import Button from '../components/button/Button';
 import {StyleSheet, Text, View} from 'react-native';
 import {Slider} from '@miblanchard/react-native-slider';
-import {MAXIMUM_VALUE, MINIMUM_VALUE} from '../constants';
+import {MAXIMUM_VALUE, MINIMUM_VALUE, colors} from '../constants';
 
 const STEP_SLIDER = 50;
 const FilterHomeScreen = () => {
@@ -47,14 +47,14 @@ const FilterHomeScreen = () => {
       <Text style={styles.sectionTitle}>Starting bid range</Text>
       <Slider
         animateTransitions
-        maximumTrackTintColor="#d3d3d3"
+        maximumTrackTintColor={colors.lightGrey}
         maximumValue={MAXIMUM_VALUE}
         value={[low, high]}
-        minimumTrackTintColor="#da291c"
+        minimumTrackTintColor={colors.secondary}
         minimumValue={MINIMUM_VALUE}
         step={STEP_SLIDER}
         onValueChange={handleValueChange}
-        thumbTintColor="#da291c"
+        thumbTintColor={colors.secondary}
       />
       <Text style={styles.rangeText}>
         ${low} - ${high}
@@ -65,7 +65,7 @@ const FilterHomeScreen = () => {
         title={`Filter by Make ${make.length > 0 ? `(${make.length})` : ''}`}
         iconLeft="flag"
         iconRight="filter-variant"
-        textColor={hasMakeFilter ? '#ffffff' : '#ffffff70'}
+        textColor={hasMakeFilter ? colors.white : colors.white70}
         onPress={() => {
           navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MAKE});
         }}
@@ -74,7 +74,7 @@ const FilterHomeScreen = () => {
         title={`Filter by Model ${model.length > 0 ? `(${model.length})` : ''}`}
         iconLeft="car"
         iconRight="filter-variant"
-        textColor={hasModelFilter ? '#ffffff' : '#ffffff70'}
+        textColor={hasModelFilter ? colors.white : colors.white70}
         onPress={() => {
           navigation.navigate(Routes.FILTER, {filterBy: FilterBy.MODEL});
         }}
@@ -92,17 +92,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: '#152d6d',
+    backgroundColor: colors.primary,
   },
   sectionTitle: {
-    color: '#fff',
+    color: colors.white,
     fontSize: 18,
     marginTop: 12,
     marginBottom: 18,
     fontWeight: 'bold',
   },
   rangeText: {
-    color: '#fff',
+    color: colors.white,
     textAlign: 'center',
     marginBottom: 12,
     fontWeight: 'bold',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginBottom: 24,
     height: 1,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: colors.lightGrey,
     width: '100%',
   },
 });

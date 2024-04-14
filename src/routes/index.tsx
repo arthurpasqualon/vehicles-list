@@ -2,35 +2,25 @@
 import React from 'react';
 import {
   NativeStackNavigationOptions,
-  NativeStackNavigationProp,
   createNativeStackNavigator,
 } from '@react-navigation/native-stack';
 import Routes from './routes';
 import MainScreen from '../screens/MainScreen';
 import FiltersScreen from '../screens/FilterScreen';
 import DetailScreen from '../screens/DetailScreen';
-import {RootStackParamList} from './types';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation} from '@react-navigation/native';
 import FilterHomeScreen from '../screens/FilterHomeScreen';
-import {View} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../hooks/useReduxHooks';
-import {setFavouriteFilter} from '../store/slices/filter/reducer';
+import {colors} from '../constants';
+import HeaderButtons from '../components/header-buttons/HeaderButtons';
 
 const Stack = createNativeStackNavigator();
 
 const Navigator = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const dispatch = useAppDispatch();
-  const isFavourite = useAppSelector(state => state.filterReducer.favourite);
-  const favouriteIcon = isFavourite ? 'cards-heart' : 'cards-heart-outline';
   const headerOptions: NativeStackNavigationOptions = {
     headerTitleAlign: 'center',
     headerBackTitleVisible: false,
-    headerTintColor: '#fff',
+    headerTintColor: colors.white,
     headerStyle: {
-      backgroundColor: '#152d6d',
+      backgroundColor: colors.primary,
     },
   };
   return (
@@ -41,26 +31,10 @@ const Navigator = () => {
         options={{
           headerTitle: 'Vehicles',
           headerTitleAlign: 'center',
-          headerTintColor: '#fff',
-          headerRight: () => (
-            <View style={{flexDirection: 'row'}}>
-              <Icon
-                name={favouriteIcon}
-                size={30}
-                style={{marginRight: 10}}
-                color="#fff"
-                onPress={() => dispatch(setFavouriteFilter())}
-              />
-              <Icon
-                name="filter-variant"
-                size={30}
-                color="#fff"
-                onPress={() => navigation.navigate(Routes.FILTER_HOME)}
-              />
-            </View>
-          ),
+          headerTintColor: colors.white,
+          headerRight: () => <HeaderButtons />,
           headerStyle: {
-            backgroundColor: '#152d6d',
+            backgroundColor: colors.primary,
           },
         }}
       />

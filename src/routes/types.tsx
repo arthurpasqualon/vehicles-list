@@ -8,6 +8,7 @@ export enum FilterBy {
 
 export type RootStackParamList = {
   MAIN: any;
+  FILTER_HOME: any;
   FILTER: {
     filterBy: FilterBy;
   };

@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   title,
   iconLeft,
   iconRight,
-  textColor = '#7d00ff',
+  textColor = '#ffffff',
 }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -28,12 +28,10 @@ const Button: React.FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#ffffff',
     flexDirection: 'row',
     alignItems: 'center',
     padding: 8,
     margin: 2,
-    borderRadius: 12,
   },
   title: {
     fontSize: 16,

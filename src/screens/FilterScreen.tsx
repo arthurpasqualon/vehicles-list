@@ -14,10 +14,12 @@ import {
   setModelFilter,
 } from '../store/slices/filter/reducer';
 import useGetFilterOptions from '../hooks/useGetFilterOptions';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 const FiltersScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, Routes.FILTER>>();
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const options = useGetFilterOptions(route.params.filterBy);
   const filter = useAppSelector(state => state.filterReducer);
 
@@ -79,8 +81,8 @@ export default FiltersScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 24,
-    backgroundColor: '#fff',
+    paddingTop: 24,
+    backgroundColor: '#152d6d',
   },
   floatingButtonContainer: {
     alignItems: 'center',

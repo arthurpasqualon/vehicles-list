@@ -36,12 +36,8 @@ export const filterSlice = createSlice({
     setStartingBidFilter: (state, action) => {
       state.startingBid = action.payload;
     },
-    setFavouriteFilter: (state, action) => {
-      if (state.favourite === action.payload) {
-        state.favourite = false;
-        return;
-      }
-      state.favourite = action.payload;
+    setFavouriteFilter: state => {
+      state.favourite = !state.favourite;
     },
     clearAllFilters: state => {
       state.make = [];

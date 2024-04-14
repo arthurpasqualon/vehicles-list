@@ -8,6 +8,7 @@ const useFilterVehicles = () => {
   const filteredVehicles = useMemo(
     () =>
       vehicles.filter(vehicle => {
+        const favouriteFilter = filters.favourite ? vehicle.favourite : true;
         const makeFilter = filters.make.length
           ? filters.make.includes(vehicle.make)
           : true;
@@ -18,7 +19,7 @@ const useFilterVehicles = () => {
           ? filters.startingBid.min <= vehicle.startingBid &&
             filters.startingBid.max >= vehicle.startingBid
           : true;
-        return makeFilter && modelFilter && priceFilter;
+        return makeFilter && modelFilter && priceFilter && favouriteFilter;
       }),
     [vehicles, filters],
   );

@@ -22,7 +22,7 @@ const List: React.FC<ListProps> = ({vehicles}) => {
   return (
     <FlatList
       data={vehicles}
-      renderItem={({item, index}) => <ListItem vehicle={item} index={index} />}
+      renderItem={({item}) => <ListItem vehicle={item} />}
       ListEmptyComponent={
         <View style={styles.emptyList}>
           <Text style={styles.emptyListTitle}>No vehicles found</Text>
@@ -39,7 +39,7 @@ const List: React.FC<ListProps> = ({vehicles}) => {
 
 const styles = StyleSheet.create({
   emptyList: {
-    flex: 1,
+    marginTop: 100,
     justifyContent: 'center',
     alignItems: 'center',
   },

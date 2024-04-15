@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: colors.darkGrey,
     padding: 8,
   },
   separator: {
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
   },
   details: {
     fontSize: 16,
+    color: colors.darkGrey,
     padding: 8,
   },
   header: {

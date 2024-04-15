@@ -49,11 +49,12 @@ const styles = StyleSheet.create({
   },
   emptyListTitle: {
     fontSize: 24,
+    color: colors.darkGrey,
     fontWeight: 'bold',
   },
   emptyListDescription: {
     fontSize: 16,
-    color: colors.mediumGrey,
+    color: colors.darkGrey,
   },
   clearAllContainer: {
     height: 48,

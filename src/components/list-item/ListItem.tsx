@@ -27,7 +27,7 @@ const ListItem: React.FC<ListItemProps> = ({vehicle}) => {
   const today = dayjs();
 
   const auctionRemainingHours = dayjs(auctionDateTime).diff(today, 'hours');
-  const isAuctionActive = auctionRemainingHours < 0;
+  const isAuctionActive = auctionRemainingHours <= 0;
   const auctionRemainingDays = auctionRemainingHours / HOURS_IN_A_DAY;
 
   const auctionRemainingTime =
@@ -92,17 +92,21 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     marginTop: 4,
+    color: colors.darkGrey,
   },
   detail: {
     fontSize: 12,
     marginTop: 8,
     marginRight: 8,
+    color: colors.darkGrey,
   },
   description: {
     fontSize: 12,
+    color: colors.darkGrey,
   },
   startingBid: {
     fontSize: 18,
+    color: colors.darkGrey,
     fontWeight: 'bold',
   },
   photoContainer: {
